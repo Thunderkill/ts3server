@@ -1,8 +1,8 @@
 #!/bin/bash
 # Name: install_ts3-server.sh
-# Version: 1.1
+# Version: 1.2
 # Created On: 3/5/2015
-# Updated On: 11/24/2018
+# Updated On: 08/15/2019
 # Created By: rcguy
 # Description: Automagically installs the Linux TeamSpeak 3 Server
 # Tested on: Debian 9 / x64 / VPS / 2 Cores / 2GB RAM / 20 GB SSD
@@ -22,7 +22,7 @@ if	[ "$EUID" -ne 0 ]; then
 	exit 1
 fi
 
-# official download urls - updated on: 15/08/2019
+# official download urls - updated on: 08/15/2019
 X64_M1="https://files.teamspeak-services.com/releases/server/$TS3_VER/teamspeak3-server_linux_amd64-$TS3_VER.tar.bz2"
 X86_M1="https://files.teamspeak-services.com/releases/server/$TS3_VER/teamspeak3-server_linux_x86-$TS3_VER.tar.bz2"
 

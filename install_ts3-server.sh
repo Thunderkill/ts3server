@@ -11,7 +11,7 @@
 # user to run the ts3server and where to install it
 TS3_USER="teamspeak3"
 TS3_DIR="/opt/ts3server"
-TS3_VER="3.9.1"
+TS3_VER="3.10.2"
 
 # ==> MAIN PROGRAM <==
 set -e # exit with a non-zero status when there is an uncaught error
@@ -23,17 +23,17 @@ if	[ "$EUID" -ne 0 ]; then
 fi
 
 # official download urls - updated on: 08/15/2019
-X64_M1="https://files.teamspeak-services.com/releases/server/$TS3_VER/teamspeak3-server_linux_amd64-$TS3_VER.tar.bz2"
-X86_M1="https://files.teamspeak-services.com/releases/server/$TS3_VER/teamspeak3-server_linux_x86-$TS3_VER.tar.bz2"
+X64="https://files.teamspeak-services.com/releases/server/$TS3_VER/teamspeak3-server_linux_amd64-$TS3_VER.tar.bz2"
+X86="https://files.teamspeak-services.com/releases/server/$TS3_VER/teamspeak3-server_linux_x86-$TS3_VER.tar.bz2"
 
 # check if we need 64bit or 32bit binaries
 A=$(arch)
 if [ "$A" = "x86_64" ]; then
-	URL1="$X64_M1"
+	URL="$X64"
 elif [ "$A" = "i386" ]; then
-	URL1="$X86_M1"
+	URL="$X86"
 elif [ "$A" = "i686" ]; then
-	URL1="$X86_M1"
+	URL="$X86"
 fi
 
 # functions
@@ -55,8 +55,9 @@ else
 fi
 
 # download and install the ts3server
-echo "Installing the TeamSpeak 3 server to: '$TS3_DIR'"
-if wget -q $URL1; then
+echo "Trying to download teamspeak server files from '$URL'"
+if wget -q $URL; then
+	echo "Installing the TeamSpeak 3 server to: '$TS3_DIR'"
 	install_ts3-server
 else
 	echo -e "\n ERROR!!! Failed to download the TeamSpeak 3 server\n"
